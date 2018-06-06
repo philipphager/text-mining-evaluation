@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10500.18.0404.1406                               -->
+<workbook original-version='10.5' source-build='10.5.3 (10500.18.0404.1406)' source-platform='mac' version='10.5' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource inline='true' name='Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736' version='10.5'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection name='hyper_0'>
+            <connection access_mode='readwrite' author-locale='en_US' class='hyper' dbname='/Users/victor/Documents/My Tableau Repository/Datasources/Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736.hyper' default-settings='yes' output-to-hyper-file='yes' schema='Extract' site-name=':fake-loom-site-writer' sslmode='' tablename='Extract' username='tableau_internal_user' />
+          </named-connection>
+        </named-connections>
+        <relation connection='hyper_0' name='Extract' table='[Extract].[Extract]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>article_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[article_id]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>article_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>553512</approx-count>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>comment_count</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[comment_count]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>comment_count</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>257</approx-count>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='integer' name='[article_id]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[comment_count (bin)]' role='dimension' type='quantitative'>
+        <calculation class='bin' decimals='1' formula='[comment_count]' peg='0' size='44.8' />
+      </column>
+      <column aggregation='Sum' datatype='integer' name='[comment_count]' role='dimension' type='ordinal' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.453149' measure-ordering='alphabetic' measure-percentage='0.546851' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Comments per Article Distribution'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736' />
+          </datasources>
+          <datasource-dependencies datasource='Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736'>
+            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+              <calculation class='tableau' formula='1' />
+            </column>
+            <column aggregation='Sum' datatype='integer' name='[comment_count]' role='dimension' type='ordinal' />
+            <column-instance column='[comment_count]' derivation='None' name='[none:comment_count:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]'>
+            <groupfilter function='except' user:ui-domain='database' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:comment_count:ok]' />
+              <groupfilter function='union'>
+                <groupfilter function='member' level='[none:comment_count:ok]' member='1' />
+                <groupfilter function='member' level='[none:comment_count:ok]' member='2' />
+                <groupfilter function='member' level='[none:comment_count:ok]' member='3' />
+                <groupfilter function='member' level='[none:comment_count:ok]' member='4' />
+                <groupfilter function='member' level='[none:comment_count:ok]' member='5' />
+                <groupfilter function='member' level='[none:comment_count:ok]' member='6' />
+                <groupfilter function='member' level='[none:comment_count:ok]' member='7' />
+                <groupfilter function='member' level='[none:comment_count:ok]' member='8' />
+                <groupfilter function='member' level='[none:comment_count:ok]' member='9' />
+                <groupfilter function='member' level='[none:comment_count:ok]' member='50' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <lod column='[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]' />
+            </encodings>
+            <reference-line axis-column='[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]' boxplot-mark-exclusion='false' boxplot-whisker-type='standard' enable-instant-analytics='true' formula='average' id='refline0' label-type='automatic' probability='95' scope='per-cell' symmetric='false' value-column='[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]' z-order='1' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.18591159582138062' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</rows>
+        <cols />
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Comments per Article Distribution'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <selection-collection>
+          <tuple-selection>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields>
+                    <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]</field>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>50</value>
+                <value>11805</value>
+              </tuple>
+            </tuple-reference>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields>
+                    <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]</field>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>9</value>
+                <value>9234</value>
+              </tuple>
+            </tuple-reference>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields>
+                    <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]</field>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>8</value>
+                <value>10116</value>
+              </tuple>
+            </tuple-reference>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields>
+                    <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]</field>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>7</value>
+                <value>11115</value>
+              </tuple>
+            </tuple-reference>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields>
+                    <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]</field>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>6</value>
+                <value>12417</value>
+              </tuple>
+            </tuple-reference>
+            <tuple-reference>
+              <tuple-descriptor>
+                <pane-descriptor>
+                  <x-fields />
+                  <y-fields>
+                    <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                  </y-fields>
+                </pane-descriptor>
+                <columns>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]</field>
+                  <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[sum:Number of Records:qk]</field>
+                </columns>
+              </tuple-descriptor>
+              <tuple>
+                <value>5</value>
+                <value>13770</value>
+              </tuple>
+            </tuple-reference>
+          </tuple-selection>
+        </selection-collection>
+        <highlight>
+          <color-one-way>
+            <field>[Flow1-node-Clean 1-4d70c44bd6904a8083fc7e9bccadf736].[none:comment_count:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='384' name='Comments per Article Distribution' width='246'>
+      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
+      RU5ErkJggg==
+    </thumbnail>
+  </thumbnails>
+</workbook>
